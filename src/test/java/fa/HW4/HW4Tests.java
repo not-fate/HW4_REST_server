@@ -10,7 +10,7 @@ import java.io.IOException;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest("Smoke-тесты, проверяющие возможность соединения с базами данных.")
-class HW4Tests {
+class DBConnectivityTests {
 
 	@Test
 	void contextLoads() {
