@@ -7,6 +7,6 @@ import java.io.IOException;
 @Repository
 public class H2Handler extends DatabaseHandler{
     public H2Handler() throws IOException {
-        super("h2_hibernate.properties");
+        super("/h2.properties");
     }
 }

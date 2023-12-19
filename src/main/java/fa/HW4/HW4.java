@@ -6,9 +6,8 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @ComponentScan(basePackages = "fa.HW4")
-public class Hw4Application {
-
+public class HW4 {
 	public static void main(String[] args) {
-		SpringApplication.run(Hw4Application.class, args);
+		SpringApplication.run(HW4.class, args);
 	}
 }
