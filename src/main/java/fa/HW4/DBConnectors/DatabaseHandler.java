@@ -5,13 +5,13 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Properties;
 
-@Repository
+@Component
 public abstract class DatabaseHandler {
     protected Properties properties = new Properties();
     protected SessionFactory sessionFactory;

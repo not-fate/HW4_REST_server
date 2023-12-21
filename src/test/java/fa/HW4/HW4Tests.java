@@ -9,6 +9,7 @@ import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
 @SpringBootTest("Smoke-тесты, проверяющие возможность соединения с базами данных.")
 class DBConnectivityTests {
 
