@@ -1,48 +1,27 @@
 package fa.HW4.DBConnectors;
 
 import fa.HW4.Entities.Row;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.query.Query;
-import org.springframework.stereotype.Component;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.transaction.Transactional;
+import org.springframework.stereotype.Repository;
 
-import java.io.IOException;
 import java.util.List;
-import java.util.Properties;
 
-@Component
-public abstract class DatabaseHandler {
-    protected Properties properties = new Properties();
-    protected SessionFactory sessionFactory;
+@Repository
+public class DatabaseHandler {
 
-    public DatabaseHandler(String path) throws IOException {
-        properties.load(getClass().getResourceAsStream(path));
-        sessionFactory = new Configuration()
-                .addProperties(properties)
-                .addAnnotatedClass(Row.class)
-                .buildSessionFactory();
-    }
+    @PersistenceContext
+    public EntityManager entityManager;
+
 
     public List<Row> load() {
-        try (var session = sessionFactory.openSession()) {
-            Query<Row> query = session.createQuery("from Row", Row.class);
-            return query.list();
-        }
+        return entityManager.createQuery("from Row", Row.class).getResultList();
     }
 
+    @Transactional
     public void upload(List<Row> rows) {
-        try (var session = sessionFactory.openSession()) {
-            Transaction transaction = session.beginTransaction();
-            try {
-                session.createNativeQuery("truncate table TREES").executeUpdate();
-                rows.forEach(session::saveOrUpdate);
-                transaction.commit();
-            } catch (Exception e) {
-                if (transaction != null) {
-                    transaction.rollback();
-                }
-            }
-        }
+        entityManager.createNativeQuery("TRUNCATE TABLE trees").executeUpdate();
+        rows.forEach(entityManager::merge);
     }
 }

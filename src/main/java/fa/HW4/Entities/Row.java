@@ -1,17 +1,14 @@
 package fa.HW4.Entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name="trees")
 public class Row {
     @Id
-    @Column(name = "id")
-    public int ID;
+    public int id;
 
-    @Column(name = "parent_id")
-    public int parentID;
+    public int parent_id;
 }

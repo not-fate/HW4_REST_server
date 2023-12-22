@@ -4,8 +4,10 @@ import fa.HW4.DBConnectors.DatabaseHandler;
 import fa.HW4.Entities.Row;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.ArrayList;
 import java.util.List;
+
 
 @RestController
 @RequestMapping("/trees")
@@ -20,8 +22,8 @@ public class Controller {
     }
 
     @PostMapping
-    public String post(@RequestBody ArrayList<Row> rows) {
+    public void post(@RequestBody ArrayList<Row> rows) {
         databaseHandler.upload(rows);
-        return databaseHandler.getClass().descriptorString();
     }
+
 }
